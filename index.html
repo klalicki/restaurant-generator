@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Generator</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+        * {
+          font-family: "DM Sans", sans-serif;
+        }
+        body {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 0;
+          min-height: 100vh;
+          width: 100vw;
+        }
+        h1 {
+          font-weight: 300;
+          font-size: 3rem;
+          max-width: 800px;
+          text-align: center;
+        }
+        #btn-new-restaurant {
+          background-color: white;
+          border: 2px solid black;
+          font-size: 2rem;
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          transition: all 0.5s;
+        }
+        #btn-new-restaurant:hover {
+          background-color: lightcyan;
+          transition: all 0.5s;
+        }
+        span {
+          font-weight: 700;
+        }
+      @media only screen and (max-width: 600px) {
+        :root{
+          font-size:12px
+        }
+    </style>
+  </head>
+  <body>
+    <h1>
+      A <span id="rest-format">type</span> that serves
+      <span id="rest-cuisine">type</span> food at a
+      <span id="rest-price">price</span> price point.
+    </h1>
+    <button id="btn-new-restaurant">Generate New Restaurant</button>
+  </body>
+  <script>
+    const genData = {
+      cuisine: [
+        "American",
+        "Barbecue",
+        "Breakfast",
+        "Brunch",
+        "Cafe",
+        "Caribbean",
+        "Chinese",
+        "Diner",
+        "El Salvadorean",
+        "French",
+        "Hamburger",
+        "Indian",
+        "Italian",
+        "Japanese",
+        "Mexican",
+        "Pizza",
+        "Seafood",
+        "Southern",
+        "Steak",
+        "Sushi",
+        "Thai",
+        "Turkish",
+        "Vegetarian/Vegan",
+      ],
+      format: [
+        "Bar/Pub",
+        "Sit-down Restaurant",
+        "Take-out only Restaurant",
+        "Fast Casual Restaurant",
+        "Fast food/drive through",
+        "Bistro",
+        "Food Truck",
+        "Cafe",
+        "Pop-up Restaurant",
+        "Buffet Restaurant",
+      ],
+      price: ["$ ($1-10)", "$$ ($10-25) ", "$$$ ($25-45)", "$$$$ ($50+) "],
+    };
+    const elements = {
+      cuisine: document.getElementById("rest-cuisine"),
+      price: document.getElementById("rest-price"),
+      format: document.getElementById("rest-format"),
+    };
+    const getRandomOf = (arr) => {
+      const len = arr.length;
+      const index = Math.floor(Math.random() * len);
+      return arr[index];
+    };
+    const getNewRestaurant = () => {
+      elements.cuisine.textContent = getRandomOf(genData.cuisine);
+      elements.price.textContent = getRandomOf(genData.price);
+      elements.format.textContent = getRandomOf(genData.format);
+    };
+    getNewRestaurant();
+    document
+      .querySelector("#btn-new-restaurant")
+      .addEventListener("click", getNewRestaurant);
+  </script>
+</html>
