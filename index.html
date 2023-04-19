@@ -27,6 +27,12 @@
           font-size: 3rem;
           max-width: 800px;
           text-align: center;
+          opacity: 1;
+          transition:all 0.5s;
+        }
+        .hide{
+          opacity:0;
+          transition:all 0.5s;
         }
         #btn-new-restaurant {
           background-color: white;
@@ -50,12 +56,12 @@
     </style>
   </head>
   <body>
-    <h1>
-      A <span id="rest-format">type</span> that serves
-      <span id="rest-cuisine">type</span> food at a
-      <span id="rest-price">price</span> price point.
-    </h1>
     <button id="btn-new-restaurant">Generate New Restaurant</button>
+    <h1>
+      A <span id="rest-format">type</span> <br />
+      that serves <span id="rest-cuisine">type</span> food <br />
+      at a <span id="rest-price">price</span> price point.
+    </h1>
   </body>
   <script>
     const genData = {
@@ -102,6 +108,7 @@
       cuisine: document.getElementById("rest-cuisine"),
       price: document.getElementById("rest-price"),
       format: document.getElementById("rest-format"),
+      allText: document.querySelector("h1"),
     };
     const getRandomOf = (arr) => {
       const len = arr.length;
@@ -112,10 +119,17 @@
       elements.cuisine.textContent = getRandomOf(genData.cuisine);
       elements.price.textContent = getRandomOf(genData.price);
       elements.format.textContent = getRandomOf(genData.format);
+      elements.allText.classList.remove("hide");
+    };
+    const btnClickHandler = () => {
+      elements.allText.classList.add("hide");
+      setTimeout(() => {
+        getNewRestaurant();
+      }, 500);
     };
     getNewRestaurant();
     document
       .querySelector("#btn-new-restaurant")
-      .addEventListener("click", getNewRestaurant);
+      .addEventListener("click", btnClickHandler);
   </script>
 </html>
