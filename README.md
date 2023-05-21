@@ -1,5 +1,5 @@
 # restaurant-generator
-A design brief generator for my students
+A single-file design brief generator for my students, built with vanilla JavaScript,
 
 ## Background
 
